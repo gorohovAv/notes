@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import cyberImg from "./assets/cyber-squeak.png"
+import Message from './components/Message/Message';
 
 const phrases = [
   "Всё плохо, переделывай",
@@ -7,6 +8,11 @@ const phrases = [
   "Не огорчайся, у тебя всё получится!",
   "Выкинь комп"
 ];
+
+const MESSAGES = [
+  "Привет, я Мышь-Предсказатель!",
+  "Я помогу тебе оценить код :)"
+]
 
 const CyberSqueak = () => {
   const [randomPhrase, setRandomPhrase] = useState("");
@@ -18,6 +24,11 @@ const CyberSqueak = () => {
 
   return (
     <div>
+      <div className='message-list'>
+        {MESSAGES.map((item, i) =>{
+          return(<Message text={item}key={i}/>)
+        })}
+      </div>
       <div>
         <img
           src={cyberImg}
