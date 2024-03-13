@@ -28,6 +28,7 @@ const CyberSqueak = () => {
         {MESSAGES.map((item, i) =>{
           return(<Message text={item}key={i}/>)
         })}
+        <button onClick={getRandomPhrase}>Проверь мой код</button>
       </div>
       <div>
         <img
@@ -38,6 +39,7 @@ const CyberSqueak = () => {
         />
       </div>
       {randomPhrase && <p>{randomPhrase}</p>}
+      {/* {randomPhrase} */}
     </div>
   );
 };
