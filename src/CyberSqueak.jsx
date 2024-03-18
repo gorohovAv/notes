@@ -10,36 +10,25 @@ const phrases = [
   "Давай я помогу!"
 ];
 
-const message = [
-  "Привет, Я мышь-предсказательница!",
-  "Я оцениваю насколько ты идиот!"
-
-]
-
+//основной элемент (мышь)
 const CyberSqueak = () => {
   const [randomPhrase, setRandomPhrase] = useState("");
 
-  
-
+  //генерация рандомного ответа
   const getRandomPhrase = () => {
     const randomIndex = Math.floor(Math.random() * phrases.length);
     setRandomPhrase(phrases[randomIndex]);
   };
 
+  //блок страницы
   return (
+
     <div>
       <div className='message-list'>
-        {message.map( (item, i) => {
-          return (<Message text={item} key={i}/>)
-        }
-        )
-        }
-        <button onClick={getRandomPhrase}>
-          Проверь мой код!
-        </button>
-        
+        <Message />
+        <button onClick={getRandomPhrase}>Проверь мой код!</button>  
       </div>
-
+      
       <div>
         <img
           src={cyberImg}
@@ -48,7 +37,9 @@ const CyberSqueak = () => {
           style={{ cursor: 'pointer' }}
         />
       </div>
+      
       {randomPhrase && <p>{randomPhrase}</p>}
+
     </div>
   );
 };
