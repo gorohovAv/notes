@@ -26,7 +26,9 @@ const CyberSqueak = () => {
     <div>
       <div className='message-list'>
         {MESSAGES.map((item, i) =>{
-          return(<Message text={item}key={i}/>)
+          return(
+          <Message key={i} text="aa">{item}</Message>
+          )
         })}
         <button onClick={getRandomPhrase}>Проверь мой код</button>
       </div>
@@ -34,8 +36,6 @@ const CyberSqueak = () => {
         <img
           src={cyberImg}
           alt="CyberSqueak"
-          onClick={getRandomPhrase}
-          style={{ cursor: 'pointer' }}
         />
       </div>
       {randomPhrase && <p>{randomPhrase}</p>}
