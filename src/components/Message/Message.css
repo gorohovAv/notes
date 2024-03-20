@@ -1,0 +1,20 @@
+.message {
+    border: solid 1px #ccc;
+    border-radius: 10px;
+    background: #c487e8;
+    color: rgba(48, 6, 102, 0.675);
+    padding: 20px;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+}
+
+.message-list {
+    position:absolute;
+	left: 250px;
+	top: 10px;
+}
+
+.message:nth-child(1) {
+	-webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 50ms both;
+	        animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 50ms both;
+}
