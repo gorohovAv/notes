@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import cyberImg from "./assets/cyber-squeak.png"
 import Message from './components/Message/Message';
-import Message from './components/Message/Message';
 
 
 const phrases = [
@@ -38,10 +37,6 @@ const CyberSqueak = () => {
           )
         })}
         <button onClick={getRandomPhrase}>Проверь мой код</button>
-      </div>
-      <div className='message-list'>
-        <Message />
-        <button onClick={getRandomPhrase}>Проверь мой код!</button>  
       </div>
       
       <div>
