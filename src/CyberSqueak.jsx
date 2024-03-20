@@ -31,6 +31,7 @@ const CyberSqueak = () => {
   const handleSubmitResponse = () =>{
     console.log(inputRef.current);
     setMessages([
+      ...messages,
       inputRef.current.value
     ])
   }
@@ -42,7 +43,7 @@ const CyberSqueak = () => {
       <div className='message-list'>
         {messages.map((item, i) =>{
           return(
-          <Message key={i} text="aa">{item}</Message>
+          <Message key={i} text="aa">{item} &mdash; {item.length}</Message>
           )
         })}
 
