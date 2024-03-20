@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import cyberImg from "./assets/cyber-squeak.png"
 import Message from './components/Message/Message';
 
@@ -11,7 +11,7 @@ const phrases = [
   "Давай я помогу!"
 ];
 
-const MESSAGES = [
+const initialMessages = [
   "Привет, я Мышь-Предсказатель!",
   "Я помогу тебе оценить код :)"
 ]
@@ -19,6 +19,8 @@ const MESSAGES = [
 //основной элемент (мышь)
 const CyberSqueak = () => {
   const [randomPhrase, setRandomPhrase] = useState("");
+  const [messages, setMessages] = useState(initialMessages);
+  const inputRef = useRef();
 
   //генерация рандомного ответа
   const getRandomPhrase = () => {
@@ -26,16 +28,27 @@ const CyberSqueak = () => {
     setRandomPhrase(phrases[randomIndex]);
   };
 
+  const handleSubmitResponse = () =>{
+    console.log(inputRef.current);
+    setMessages([
+      inputRef.current.value
+    ])
+  }
+
   //блок страницы
   return (
 
     <div>
       <div className='message-list'>
-        {MESSAGES.map((item, i) =>{
+        {messages.map((item, i) =>{
           return(
           <Message key={i} text="aa">{item}</Message>
           )
         })}
+
+        <input type="text" ref={inputRef}/>
+        <button onClick={handleSubmitResponse}>Ответить</button>
+
         <button onClick={getRandomPhrase}>Проверь мой код</button>
       </div>
       
