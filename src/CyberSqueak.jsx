@@ -30,18 +30,16 @@ const CyberSqueak = () => {
   };
   const handleSubmitResponse = () =>{
     console.log(inputRef.current);
-    setMessages([
-      ...messages,
-      inputRef.current.value
-    ])
+    setMessages(prevMsg => {
+      return [...prevMsg, inputRef.current.value];
+    });
     setHaveAnswer(true);
   }
   useEffect(()=>{
     if(haveAnswer){
-      setMessages([
-        ...messages,
-        "Поняла, покажи тогда код!"
-      ])
+      setMessages(prevMsg => {
+        return [...prevMsg, "Поняла, покажи тогда код!"];
+      });
       setHaveAnswer(false);
     }
   }, [haveAnswer]);
