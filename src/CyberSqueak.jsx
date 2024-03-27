@@ -12,8 +12,8 @@ const phrases = [
 ];
 
 const initialMessages = [
-  "Привет, я Мышь-Предсказатель!",
-  "Я помогу тебе оценить код :) Ты готов?"
+  {msg:"Привет, я Мышь-Предсказатель!", origin: "squeak"},
+  {msg:"Я помогу тебе оценить код :) Ты готов?", origin: "squeak"},
 ]
 
 //основной элемент (мышь)
@@ -28,17 +28,21 @@ const CyberSqueak = () => {
     const randomIndex = Math.floor(Math.random() * phrases.length);
     setRandomPhrase(phrases[randomIndex]);
   };
+
   const handleSubmitResponse = () =>{
     console.log(inputRef.current);
     setMessages(prevMsg => {
-      return [...prevMsg, inputRef.current.value];
+      return [...prevMsg, {msg:inputRef.current.value, origin: "user"}];
     });
+
+
     setHaveAnswer(true);
   }
+
   useEffect(()=>{
     if(haveAnswer){
       setMessages(prevMsg => {
-        return [...prevMsg, "Поняла, покажи тогда код!"];
+        return [...prevMsg, {msg:"Поняла, покажи тогда код!", origin:"squeak"}];
       });
       setHaveAnswer(false);
     }
@@ -51,7 +55,7 @@ const CyberSqueak = () => {
       <div className='message-list'>
         {messages.map((item, i) =>{
           return(
-          <Message key={i} text="aa">{item} &mdash; {item.length}</Message>
+          <Message key={i} text="aa" origin = {item.origin} msg = {item.msg }>{item.msg} &mdash; {item.msg.length}</Message>
           )
         })}
 
