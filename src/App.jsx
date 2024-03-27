@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import './App.css'
-import CyberSqueak from './CyberSqueak'
+import CyberSqueak from './components/CyberSqueak/CyberSqueak'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import PageMain from './pages/PageMain/PageMain';
+import PageSettings from './pages/PageSettings/PageSettings';
 
 function App() {
 
   const router = createBrowserRouter([
-    {path: "/", element: <CyberSqueak/>},
-    {path: "/settings", element: <></>},
+    {path: "/", element: <PageMain/>, errorElement: <p>Нет такого пути</p>},
+    {path: "/settings", element: <PageSettings />},
   ]);
 
   return (

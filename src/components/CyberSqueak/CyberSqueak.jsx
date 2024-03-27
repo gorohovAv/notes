@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import cyberImg from "./assets/cyber-squeak.png"
-import Message from './components/Message/Message';
+import cyberImg from "../../assets/cyber-squeak.png"
+import Message from '../Message/Message';
 
 
 const phrases = [
