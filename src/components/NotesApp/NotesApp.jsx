@@ -14,8 +14,29 @@ import { Button } from '@mui/base/Button';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import Masonry from '@mui/lab/Masonry';
 import { Breadcrumbs } from "@mui/material";
 import { Link } from "react-router-dom";
+
+const makeAiQuery = async(code) => {
+    const options = {
+      method: 'POST',
+      headers: {Authorization: 'Bearer <token>', 'Content-Type': 'application/json'},
+      body: '{"query":"<string>","conversationId":"<string>","visitorId":"<string>","temperature":123,"streaming":true,"modelName":"gpt_3_5_turbo","maxTokens":123,"presencePenalty":123,"frequencyPenalty":123,"topP":123,"filters":{"custom_ids":["<string>"],"datasource_ids":["<string>"]},"systemPrompt":"<string>","userPrompt":"<string>","promptType":"raw","promptTemplate":"<string>"}'
+    };
+    
+    let aiResponse = await fetch('https://app.chaindesk.ai/agents/{id}/query', options);
+      if (aiResponse.ok){
+        let aiAnswer = await aiResponse.answer;
+      }
+    
+      /*
+      .then(response => response.json())
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
+    */
+      return aiAnswer;
+  }
 
 const noteList = [
     {name: "Разведение калифорнийских червей", textContent: "Как разводить калифорнийских червей в домашних условиях", tag: "черви"},
@@ -75,13 +96,14 @@ const NotesApp = () => {
     }
 
     return (
-            <Box sx = {{ flexgrow: 1 }}>
-            <Grid container rowSpacing = {3} columns = {12} id = "Grid" alignItems='center' justifyContent = "space-evenly">
-                <Grid item xs = {4}> {/* шапка */}
-                    <Avatar alt = 'fedya' src = "src\assets\fedya.png" sx = {{width:256, height:256}}></Avatar>
-                </Grid>
-                <Grid item xs = {4}>
-                    <Button variant="contained" color="success" onClick={handleOpen}> Новая заметка </Button>
+            <div id = "page">
+            
+                
+                <header id ="header">
+                    <Avatar alt = 'fedya' className="logo" src = "src\assets\fedya.png" sx = {{width:126, height:126}} variant='circle'></Avatar>
+                
+                
+                    <Button variant="contained" color="success" className="buttonNewNote" onClick={handleOpen}> Новая заметка </Button>
                     <Modal open={open} onClose={handleClose}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description">
@@ -100,12 +122,13 @@ const NotesApp = () => {
                             </Stack>
                         </Box>
                     </Modal>
-                </Grid>
-                <Grid item xs = {4}>
-                    <Avatar alt = 'user' sx = {{width:64, height:64}}></Avatar>
-                </Grid>
+                
+                
+                    <Avatar alt = 'user' className="avatar" sx = {{width:64, height:64}}></Avatar>
+                </header>
     
-                <Grid item id = 'Drawer' xs = { 3 } textAlign='center'>
+                <nav id = "nav">
+                    <Box>
                     <RadioGroup value = {activeTag} onChange = { handleChangeActiveTag }>
                        {
                        tags.map((item, i) => {
@@ -114,10 +137,12 @@ const NotesApp = () => {
                             );
                        })}
                     </RadioGroup>
-                </Grid>
+                    </Box>
+                </nav>
 
-                <Grid item xs = {9} id = 'NotesField'>
-                    <Stack spacing = {2}>
+                <main id = "main">
+                    <Box >
+                    <Masonry columns = {3} spacing = {2}>
                     { notes.map((item, i)=>{
                         if( item.tag === activeTag ){ 
                             return(
@@ -125,16 +150,17 @@ const NotesApp = () => {
                             );
                         }
                     }) }
-                    </Stack>
-                </Grid>
-                <Grid item xs = {12} id='BreadCrumbs'>
+                    </Masonry>
+                    </Box>
+                </main>
+                <footer id = "footer">
                 <Breadcrumbs>
                     <Link to="/">Основная</Link>
                     <Link to="/settings">Настройки</Link>
                 </Breadcrumbs>
-                </Grid>
-            </Grid>
-            </Box>
+                </footer>
+            
+            </div>
     )
 };
 
