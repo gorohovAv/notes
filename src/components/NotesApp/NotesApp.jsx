@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import "./NotesApp.css";
+import "./NotesApp.scss";
 import Note from './Note';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -100,7 +100,7 @@ const NotesApp = () => {
             
                 
                 <header id ="header">
-                    <Avatar alt = 'fedya' className="logo" src = "src\assets\fedya.png" sx = {{width:126, height:126}} variant='circle'></Avatar>
+                    {/*<Avatar alt = 'fedya' className="logo" src = "src\assets\fedya.png" sx = {{width:126, height:126}} variant='circle'></Avatar>*/}
                 
                 
                     <Button variant="contained" color="success" className="buttonNewNote" onClick={handleOpen}> Новая заметка </Button>
@@ -128,16 +128,14 @@ const NotesApp = () => {
                 </header>
     
                 <nav id = "nav">
-                    <Box>
-                    <RadioGroup value = {activeTag} onChange = { handleChangeActiveTag }>
+                    <RadioGroup value = {activeTag} onChange = { handleChangeActiveTag } className="radioGroup">
                        {
                        tags.map((item, i) => {
                             return(
-                                <FormControlLabel control={<Radio />} label={item} value={item} />
+                                <FormControlLabel control={<Radio />} label={item} value={item} className="radio"/>
                             );
                        })}
                     </RadioGroup>
-                    </Box>
                 </nav>
 
                 <main id = "main">
